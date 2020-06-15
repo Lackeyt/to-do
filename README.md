@@ -8,6 +8,17 @@
 
 _{This is a detailed description of your application. Its purpose and usage.  Give as much detail as needed to explain what the application does, and any other information you want users or other developers to have. }_
 
+| Spec| Example input | Example Output
+| ----------- | ----------- | ----------- |
+| User enters a task, output form displays that input | "buy oranges" | "buy oranges" |
+| output will show a checkbox next to each task | "buy oranges" | "buy oranges -checkbox-" |
+| items will be displayed in order of entry | 1. "buy oranges" 2. "go to the gym" | 1. "buy oranges" -checkbox- 2. "go to the gym" -checkbox- |
+| if checkbox is checked and output form is submitted, remove item from list | "buy oranges" -checkbox(ischecked)- | "" |
+| if "start over" button is clicked on the output, page refreshes | "" | "" |
+| If no task is entered by user, submitting the form will return an error | "" | "Please enter at least one item to the list" |
+
+
+
 ## Setup/Installation Requirements
 
 * _This is a great place_
