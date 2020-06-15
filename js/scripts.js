@@ -1,21 +1,19 @@
 
 //Business Logic for Todo List
 function Todo(){
-    itemList = []
-    itemID  = 0
+    this.itemList = []
+    this.itemId  = 0
 }
 
 Todo.prototype.addItem = function(item) {
-    item.itemID = this.assignId();
+    item.itemId = this.assignId();
     this.itemList.push(item);
 }
 
 Todo.prototype.assignId = function() {
-    this.currentId += 1;
-    return this.currentId;
+    this.itemId += 1;
+    return this.itemId;
 }
-
-
 
 //Business Logic for Items
 function ListItem(item) {
@@ -29,14 +27,22 @@ function output(string){
 
 
 $(document).ready(function(){
+    
+    let newList = new Todo()
+
+
     $("#inputForm").submit(function(){
         event.preventDefault()
 
-        let newList = new Todo()
+        
         newItem = new ListItem($("#item").val())
         newList.addItem(newItem)
 
-        $("#output").append(output(listItem))
+        console.log(newList.itemList)
+        console.log(newItem.itemId)
+        
+
+        //$("#output").append(output(newItem))
         //populate values
     })
 });
