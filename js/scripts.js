@@ -1,13 +1,13 @@
 
 //Business Logic for Todo List
 function Todo(){
-    listItem = []
+    itemList = []
     itemID  = 0
 }
 
 Todo.prototype.addItem = function(item) {
     item.itemID = this.assignId();
-    this.ListItem.push(item)
+    this.itemList.push(item);
 }
 
 Todo.prototype.assignId = function() {
@@ -15,9 +15,15 @@ Todo.prototype.assignId = function() {
     return this.currentId;
 }
 
+
+
 //Business Logic for Items
 function ListItem(item) {
     this.item = item
+}
+
+function output(string){
+    return "<div class='form-control well'><label for='" + string.replace(/\s+/g, '') + "'>" + string + "</label> <input type='checkbox' id='" + string.replace(/\s+/g, '') + "'></input></div>"
 }
 
 
@@ -26,8 +32,11 @@ $(document).ready(function(){
     $("#inputForm").submit(function(){
         event.preventDefault()
 
-        let listItem = $("#item").val()
-        $("#output").append("<p>" + listItem + "</p><br>")
+        let newList = new Todo()
+        newItem = new ListItem($("#item").val())
+        newList.addItem(newItem)
+
+        $("#output").append(output(listItem))
         //populate values
     })
 });
