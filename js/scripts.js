@@ -15,14 +15,27 @@ Todo.prototype.assignId = function() {
     return this.itemId;
 }
 
+Todo.prototype.deleteItem = function(id) {
+    for (let i=0; i< this.itemList.length; i++) {
+      if (this.itemList[i].itemId == id) {
+        this.itemList.splice(this.itemList[i],1);
+        return true;
+      }
+    };
+    return false;
+  }
+
 //Business Logic for Items
 function ListItem(item) {
     this.item = item
 }
 
 function output(string){
-    return "<div class='form-control well'><label for='" + string.replace(/\s+/g, '') + "'>" + string + "</label> <input type='checkbox' id='" + string.replace(/\s+/g, '') + "'></input></div>"
+    return "<div class='form-control well'><label for='" + newItem.itemId + "'>" + string + "</label> <input name='updates' type='checkbox' value='" + newItem.itemId + "'></input></div>"
 }
+
+
+    
 
 
 
@@ -33,16 +46,25 @@ $(document).ready(function(){
 
     $("#inputForm").submit(function(){
         event.preventDefault()
-
+        input = $("#item").val()
         
-        newItem = new ListItem($("#item").val())
+        newItem = new ListItem(input)
         newList.addItem(newItem)
 
-        console.log(newList.itemList)
-        console.log(newItem.itemId)
-        
-
-        //$("#output").append(output(newItem))
+        $("#output").append(output(input))
         //populate values
+    })
+
+    $('button#update').click(function() {
+        let checked = []
+        $("input[name='updates']:checked").each(function(){
+            checked.push(parseInt($(this).val()))
+        })
+
+        for (let i=0; i<checked.length; i++){
+            newList.deleteItem(checked[i])
+        }
+console.log(newList.itemList)
+
     })
 });
