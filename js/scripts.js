@@ -64,7 +64,9 @@ $(document).ready(function(){
         for (let i=0; i<checked.length; i++){
             newList.deleteItem(checked[i])
         }
-console.log(newList.itemList)
-
     })
+
+    $("#reload").click(function() {
+        location.reload();
+      });
 });
